@@ -1,0 +1,32 @@
+[user]
+	name = Vincent DL
+	email = doucet.leger@gmail.com
+[alias]
+	st = status -sb
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	aa = !git add -A && git st
+	ci = commit
+	pom = push origin main
+	ck = checkout
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
+[rebase]
+	autostash = true
+[commit]
+	verbose = true
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckobjects = true
