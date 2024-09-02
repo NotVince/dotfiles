@@ -20,8 +20,8 @@ map('n', '<C-b>', '<C-b>zz', {})
 map('n', '<C-f>', '<C-f>zz', {})
 
 -- Leader movements
-map('n', '<leader>w', ':write<CR>', { desc = 'Save file' })
-map('n', '<leader>q', ':quit<CR>', { desc = 'Close file' })
+map('n', '<leader>w', '<cmd>write<CR>', { desc = 'Save file' })
+map('n', '<leader>q', '<cmd>quit<CR>', { desc = 'Close file' })
 
 -- Clear highlight search
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', {})
@@ -50,6 +50,9 @@ map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -- TODO test: system clipboard
 map({ 'n', 'v' }, '<leader>y', '"+y', {})
 map({ 'n' }, '<leader>Y', '"+y$', {})
-
 map({ 'n', 'v' }, '<leader>p', '"+p', {})
 map({ 'n', 'v' }, '<leader>P', '"+P', {})
+
+-- Buffers
+map('n', '<tab>', ':bnext<CR>', { desc = 'Next buffer' })
+map('n', '<S-tab>', ':bprevious<CR>', { desc = 'Next buffer' })

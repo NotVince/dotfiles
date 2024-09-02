@@ -73,7 +73,8 @@ return {
         return '%2l:%-2v'
       end
 
-      -- Comments
+      -- TODO: test default nvim comments
+      -- https://neovim.io/doc/user/various.html#commenting
       require('mini.comment').setup {
         mappings = {
           comment_line = '<C-_>',
@@ -83,6 +84,116 @@ return {
 
       -- Highlight word under cursor
       require('mini.cursorword').setup()
+
+      -- Split arguments list
+      -- toggle = 'gS'
+      require('mini.splitjoin').setup()
+
+      -- Jump navigation
+      require('mini.jump2d').setup()
+
+      -- Notifications
+      local notify = require 'mini.notify'
+      notify.setup {
+        lsp_progress = { enable = false },
+      }
+      vim.notify = notify.make_notify {
+        ERROR = { duration = 3000 },
+        WARN = { duration = 3000 },
+        INFO = { duration = 3000 },
+      }
+
+      local dismissCmd = function()
+        -- vim.notify.dismiss { silent = true, pending = true }
+        notify.clear()
+      end
+      vim.keymap.set('n', '<leader>;', dismissCmd, { desc = 'Dismiss notifications' })
+
+      local showCmd = function()
+        -- vim.notify.dismiss { silent = true, pending = true }
+        notify.show_history()
+      end
+      vim.keymap.set('n', '<leader>sn', showCmd, { desc = 'Show notifications history' })
+
+      -- Git diff in file
+      -- NOTE: default keymap is gh
+      -- require('mini.diff').setup()
+
+      -- TODO fix background highlight
+      local hipatterns = require 'mini.hipatterns'
+      hipatterns.setup {
+        highlighters = {
+          -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+          fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+          hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+          todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+          note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+
+          -- Highlight hex color strings (`#rrggbb`) using that color
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      }
+
+      -- Which key alternative
+      local miniclue = require 'mini.clue'
+      miniclue.setup {
+        window = {
+          delay = 300,
+          config = {
+            border = 'double',
+            width = 'auto',
+          },
+        },
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<leader>' },
+          { mode = 'x', keys = '<leader>' },
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+          -- custom clues
+          { mode = 'n', keys = '<leader>c', desc = '[C]ode' },
+          { mode = 'n', keys = '<leader>d', desc = '[D]ocument' },
+          { mode = 'n', keys = '<leader>r', desc = '[R]ename' },
+          { mode = 'n', keys = '<leader>s', desc = '[S]earch' },
+          { mode = 'n', keys = '<leader>t', desc = '[T]oggle' },
+          { mode = 'n', keys = '<leader>h', desc = 'Git [H]unk' },
+          { mode = 'v', keys = '<leader>h', desc = 'Git [H]unk' },
+        },
+      }
     end,
   },
 }
