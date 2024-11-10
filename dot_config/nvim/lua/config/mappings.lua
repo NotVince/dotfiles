@@ -32,14 +32,14 @@ map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic messa
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 map('n', '<leader>oq', vim.diagnostic.setloclist, { desc = '[O]pen diagnostic [Q]uickfix list' })
 
--- Close terminal
+-- Terminal
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Helix goto movement
-map({ 'n', 'v', 'o' }, 'gh', '0', {})
-map({ 'n', 'v', 'o' }, 'gj', 'G', {})
-map({ 'n', 'v', 'o' }, 'gk', 'gg', {})
-map({ 'n', 'v', 'o' }, 'gl', '$', {})
+-- map({ 'n', 'v', 'o' }, 'gh', '0', {})
+-- map({ 'n', 'v', 'o' }, 'gj', 'G', {})
+-- map({ 'n', 'v', 'o' }, 'gk', 'gg', {})
+-- map({ 'n', 'v', 'o' }, 'gl', '$', {})
 
 -- Split navigation
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })

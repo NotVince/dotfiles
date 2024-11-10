@@ -19,7 +19,41 @@ return {
       }
 
       -- Load the colorscheme
-      vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    priority = 1000,
+    init = function()
+      require('rose-pine').setup {
+        variant = 'main',
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+
+        enable = {
+          terminal = true,
+        },
+
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
+        },
+
+        highlight_groups = {
+          TelescopeBorder = { fg = 'highlight_high', bg = 'none' },
+          TelescopeNormal = { bg = 'none' },
+          TelescopePromptNormal = { bg = 'base' },
+          TelescopeResultsNormal = { fg = 'subtle', bg = 'none' },
+          TelescopeSelection = { fg = 'text', bg = 'base' },
+          TelescopeSelectionCaret = { fg = 'rose', bg = 'rose' },
+        },
+      }
+
+      -- Load the colorscheme
+      vim.cmd.colorscheme 'rose-pine-main'
     end,
   },
   {
