@@ -109,4 +109,5 @@ source $ZSH/oh-my-zsh.sh
 
 alias v="nvim"
 alias code="vscodium"
-
+alias py="python3"
+alias cat="bat"
