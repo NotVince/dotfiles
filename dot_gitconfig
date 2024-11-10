@@ -1,6 +1,7 @@
 [user]
 	name = Vincent DL
 	email = doucet.leger@gmail.com
+	signingkey = 0818DE7CAFE80962
 [alias]
 	st = status -sb
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -9,7 +10,7 @@
 	pom = push origin main
 	ck = checkout
 [core]
-	editor = vim
+	editor = nvim
 [init]
 	defaultBranch = main
 [pull]
@@ -20,6 +21,7 @@
 	autostash = true
 [commit]
 	verbose = true
+	gpgsign = true
 [rerere]
 	enabled = true
 [diff]
